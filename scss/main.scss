@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+
+$profileWrapperBack: hsl(246, 80%, 60%);
+$workBack: hsl(15, 100%, 70%);
+$playBack: hsl(195, 74%, 62%);
+$studyBack: hsl(348, 100%, 68%);
+$exerciseBack: hsl(145, 58%, 55%);
+$socialBack: hsl(264, 64%, 52%);
+$selfCareBack: hsl(43, 84%, 65%);
+$Background: hsl(226, 43%, 10%);
+$targetsBack: hsl(235, 46%, 20%);
+$previouslyBack: hsl(235, 45%, 61%);
+$targetTitle: hsl(236, 100%, 87%);
+$fontSize: 18px;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    background: $Background no-repeat;
+    background-size: contain;
+    font-family: 'Rubik',sans-serif;
+    background-size: 100%;
+    min-width: 100vw;
+}
+@mixin cardsBg($url,$bgcolor) {
+    background-position: 90% -7%;
+    background-image: $url;
+    background-color: $bgcolor;
+    background-repeat: no-repeat;
+}
+@mixin grid($gridTempColu,$gridTempRow,$margin) {
+    width: 75%;
+    grid-template-columns: $gridTempColu;
+    grid-template-rows: $gridTempRow;
+    margin: $margin;
+}
+@mixin user {
+    transform: translate(6em,-6em);
+    width: 60%;
+}
+.container-grid{
+    display: grid;
+    gap: 2em;
+    height: 27em;
+    @media screen and (max-width: 599px){
+        @include grid(repeat(1,100%),repeat(5,1fr) , 3em auto);
+        .profile__wrapper{
+            grid-column: 1/2;
+            height: 12em;
+        }
+        .user{
+            margin: -0.7em 1em;
+        }
+        h1{
+            font-size: 25px;
+        }
+        .relative{
+            height: 10em;
+        }
+    }
+    @media screen and (min-width: 600px) {
+        @include grid(repeat(2,1fr),repeat(4,1fr) , 3em auto);
+        .profile__wrapper{
+            grid-column: 1/3;
+            height: 12em;
+        }
+        .user{
+            margin: -1em 1em;
+        }
+        .relative{
+            height: 14em;
+        }
+    }
+    @media screen and (min-width: 850px){
+        @include grid(repeat(3,1fr),repeat(3,1fr) ,5em auto);
+        .profile__wrapper{
+            grid-column: 1/2;
+            height: 100%;
+        }
+        .user{
+            margin: 5em -5em;
+            width: 60%;
+        }
+    }
+    @media screen and (min-width: 1200px){
+        @include grid(repeat(4,1fr), repeat(2,50%),15em 10em);
+        .profile__wrapper{
+            grid-column: 1/2;
+            height: 30em;
+        }
+    }
+}  
+.profile__wrapper{
+    grid-row: 1/3;
+    color: white;
+    border-radius: 15px;
+    background: $targetsBack;
+}   
+.profile{
+    width: 100%;
+    height: 65%;
+    background: $profileWrapperBack;
+    padding: 1.7em;
+    border-radius: 15px;
+    display: flex;
+    img{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        border: 4px solid white;
+    }
+    .user{
+        p{
+            color: $targetTitle;
+            margin: 1.5em 0 0;
+            font-weight: 300;
+        }
+        h1{
+            margin-top: -0.5em;
+            font-weight: 300;
+        }
+    } 
+}      
+.options{
+    height: 35%;
+    padding: 1.7em;
+    ul{
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2em;
+        @media screen and (max-width: 599px){
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        @media screen and (min-width: 600px){
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        @media screen and (min-width: 850px){
+            flex-direction: column;
+        }
+        li{
+            a{
+                text-decoration: none;
+                color: $previouslyBack;
+             }
+            .active-default,
+            .active{
+                font-weight: 500;
+                color: white;
+            }
+        }
+    }
+}
+.content__box-work{
+    @include cardsBg( url('../images/icon-work.svg'), $workBack);
+}
+.content__box-play{
+    @include cardsBg(url('../images/icon-play.svg'), $playBack);
+}
+.content__box-study{
+    @include cardsBg(url('../images/icon-study.svg'), $studyBack);
+}
+.content__box-exercise{
+    @include cardsBg(url('../images/icon-exercise.svg'), $exerciseBack);
+}
+.content__box-social{
+    @include cardsBg(url('../images/icon-social.svg'), $socialBack);
+}
+.content__box-selfcare{
+    @include cardsBg(url('../images/icon-self-care.svg'), $selfCareBack);
+}
+
+.relative{
+    position: relative;
+    border-radius: 15px;
+    .content__box{
+    position: absolute;
+    width: 100%;
+    background: $targetsBack;
+    height: 80%;
+    bottom: -1%;
+    padding: 1.5em;
+    border-radius: 15px;
+        &:hover{
+            background: #2b3072;
+            transition: 0.2s ease;
+        }
+        .top__container{
+            color: white;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            img{
+                width: 10%;
+                height: 30%;
+                cursor: pointer;
+                opacity: 0.7;
+                @media screen and (max-width: 599px){
+                    transform: scale(0.6);
+            }&:hover{
+                opacity: 1;
+            }
+        }
+    }
+}
+.time__container{
+    height: 70%;
+    margin-top: 10%;
+    @media screen and (max-width: 599px){
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1em;
+    }
+    .current-time{
+        font-size: 40px;
+        color: white;
+        font-weight: 300;
+    }
+    .previously-time{
+        font-weight: 400;
+        color: $targetTitle;
+        margin-top: 7%;
+        font-size: 14px;
+    }
+}
+}
